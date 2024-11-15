@@ -107,7 +107,7 @@ class Luma3DSDumpConvert(commands.Cog):
                     dump_content = await dump_request.read()
                     with concurrent.futures.ProcessPoolExecutor() as pool:
                         dump_out = await self.bot.loop.run_in_executor(pool, functools.partial(self.dump_convert, dump_content))
-                    out_message = f"{f.filename} from {message.author.mention}\n```{dump_out}```"
+                    out_message = f"{f.filename} from {message.author.mention}\n```{commands.clean_content(escape_markdown=True).convert(message,dump_out)}```"
                     await message.channel.send(content=out_message)
 
 

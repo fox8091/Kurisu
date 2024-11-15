@@ -360,7 +360,7 @@ class Kurisu(commands.Bot):
             command.reset_cooldown(ctx)
 
         elif isinstance(exc, commands.UserInputError):
-            await ctx.send(f'{author.mention} A bad argument was given: `{exc}`\n')
+            await ctx.send(f'{author.mention} A bad argument was given: `{commands.clean_content(escape_markdown=True).convert(ctx,exc)}`\n')
             await ctx.send_help(ctx.command)
             command.reset_cooldown(ctx)
 
